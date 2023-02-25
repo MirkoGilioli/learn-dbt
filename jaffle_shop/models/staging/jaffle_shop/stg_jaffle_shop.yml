@@ -1,4 +1,9 @@
 #This file contains all the tests that you want dbt to perform againts your models
+# There are 4 generic tests:
+  # - unique -> the field is unique within a table
+  # - not_null -> the field is not null 
+  # - accepted_values -> the field has exactly a given discrete set of the values
+  # - relationships -> each value of this field exists in the column of another table. 
 version: 2
 
 models:
@@ -14,6 +19,11 @@ models:
         tests:
           - unique
           - not_null
+      - name: customer_id
+        tests:
+          - relationships:
+              to: ref('stg_customers')
+              field: customer_id
       - name: status
         tests:
           - accepted_values:
@@ -22,3 +32,4 @@ models:
                 - shipped
                 - returned
                 - completed
+                - return_pending
