@@ -1,0 +1,10 @@
+#This file list all the datasets and tables that models uses in their SQL code. You can refer to it using {{source('<source_name>', '<table_name>')}} 
+version: 2
+sources:
+  - name: jaffle_shop
+    schema: raw_jaffle_shop  # This is the name of BQ dataset
+    # These are the names of tables in the BQ dataset
+    tables:
+      - name: customers
+      - name: orders
+      - name: payments
